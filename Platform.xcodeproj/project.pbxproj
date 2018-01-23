@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		051102EB2016F09C00499A58 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 051102EA2016F09C00499A58 /* main.cpp */; };
+		051102F32016F16300499A58 /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 051102F12016F16300499A58 /* GameManager.cpp */; };
+		0582EB122016F61200E33114 /* Unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB102016F61200E33114 /* Unit.cpp */; };
+		0582EB152016F70900E33114 /* UnitData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB132016F70900E33114 /* UnitData.cpp */; };
+		0582EB182016F81E00E33114 /* UnitManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB162016F81E00E33114 /* UnitManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +29,14 @@
 /* Begin PBXFileReference section */
 		051102E72016F09C00499A58 /* Platform */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Platform; sourceTree = BUILT_PRODUCTS_DIR; };
 		051102EA2016F09C00499A58 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		051102F12016F16300499A58 /* GameManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
+		051102F22016F16300499A58 /* GameManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameManager.hpp; sourceTree = "<group>"; };
+		0582EB102016F61200E33114 /* Unit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Unit.cpp; sourceTree = "<group>"; };
+		0582EB112016F61200E33114 /* Unit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Unit.hpp; sourceTree = "<group>"; };
+		0582EB132016F70900E33114 /* UnitData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UnitData.cpp; sourceTree = "<group>"; };
+		0582EB142016F70900E33114 /* UnitData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnitData.hpp; sourceTree = "<group>"; };
+		0582EB162016F81E00E33114 /* UnitManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UnitManager.cpp; sourceTree = "<group>"; };
+		0582EB172016F81E00E33114 /* UnitManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnitManager.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,14 @@
 			isa = PBXGroup;
 			children = (
 				051102EA2016F09C00499A58 /* main.cpp */,
+				051102F12016F16300499A58 /* GameManager.cpp */,
+				051102F22016F16300499A58 /* GameManager.hpp */,
+				0582EB102016F61200E33114 /* Unit.cpp */,
+				0582EB112016F61200E33114 /* Unit.hpp */,
+				0582EB132016F70900E33114 /* UnitData.cpp */,
+				0582EB142016F70900E33114 /* UnitData.hpp */,
+				0582EB162016F81E00E33114 /* UnitManager.cpp */,
+				0582EB172016F81E00E33114 /* UnitManager.hpp */,
 			);
 			path = Platform;
 			sourceTree = "<group>";
@@ -119,7 +139,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0582EB122016F61200E33114 /* Unit.cpp in Sources */,
+				0582EB182016F81E00E33114 /* UnitManager.cpp in Sources */,
 				051102EB2016F09C00499A58 /* main.cpp in Sources */,
+				051102F32016F16300499A58 /* GameManager.cpp in Sources */,
+				0582EB152016F70900E33114 /* UnitData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
