@@ -9,6 +9,7 @@
 #ifndef GameManager_hpp
 #define GameManager_hpp
 
+
 class GameManager {
     //Singleton
 private:
@@ -25,6 +26,7 @@ public:
     private:
     
     public:
+    
     
 };
 

@@ -10,6 +10,7 @@
 #include <iostream>
 
 GameManager::GameManager() {
+    std::cout << "GameManager instance is generated , ";
     std::cout << "should be called once" << std::endl;
 }
 
@@ -18,4 +19,5 @@ GameManager& GameManager::GetInstance() {
     
     return instance;
 }
+
 
