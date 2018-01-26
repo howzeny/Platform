@@ -12,11 +12,31 @@
 #include <iostream>
 #include <string>
 
-class AI {
-    std::string ai_name_;
+class AI_Interface {
     
 public:
-    const std::string &ai_name() const;
+    virtual const std::string ai_name() const = 0;
+    virtual void action() = 0;
 };
+
+class AI : AI_Interface {
+    AI_Interface &wrapped;
+public:
+    AI(AI_Interface &wrapper);
+    
+    virtual const std::string ai_name() const;
+    virtual void action();
+};
+
+class NoAI : public AI_Interface {
+    
+public:
+    NoAI(){}
+    virtual const std::string ai_name() const {return "No AI";}
+    virtual void action() {}
+};
+
+
+
 
 #endif /* AI_hpp */

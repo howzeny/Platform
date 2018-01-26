@@ -8,6 +8,15 @@
 
 #include "AI.hpp"
 
-const std::string &AI::ai_name() const {
-    return ai_name_;
+
+AI::AI(AI_Interface &wrapper) :wrapped(wrapper) {
+    
+}
+
+const std::string AI::ai_name() const {
+    return "AI(" + wrapped.ai_name() + ")";
+}
+
+void AI::action() {
+    wrapped.action();
 }

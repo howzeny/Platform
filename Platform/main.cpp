@@ -11,24 +11,17 @@
 #include "Status.hpp"
 #include "Unit.hpp"
 #include "UnitManager.hpp"
+#include "UnitRecruit.hpp"
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    Unit *unit1 = new Unit("test", {1, 2, 3, 4, 5, 6, 7});
-    Unit *unit2 = new Unit("test2", {2, 2, 3, 4, 5, 6, 7});
+    UnitRecruitExample ex;
     
-    UnitManager::GetInstance().AddUnitToTeamOne(unit1);
-    UnitManager::GetInstance().AddUnitToTeamOne(unit2);
-    UnitManager::GetInstance().AddUnitToTeamOne(unit1);
-    UnitManager::GetInstance().PrintUnitsInTeamOne();
-    UnitManager::GetInstance().RemoveUnitFromTeamOne(unit1);
-    UnitManager::GetInstance().RemoveXthUnitFromTeamOne(1);
-    if(UnitManager::GetInstance().RemoveUnitFromTeamOne(unit1)) {
-        std::cout << "success to remove unit" << std::endl;
-    } else  {
-        std::cout << "fail to remove unit" << std::endl;
-    }
-    UnitManager::GetInstance().PrintUnitsInTeamOne();
+    ex.AddUnitsToTeamOne();
+    ex.AddUnitsToTeamTwo();
     
+    UnitManager::GetInstance().PrintUnitsInTeamOne();
+    UnitManager::GetInstance().PrintUnitsInTeamTwo();
+    //std::cout << a << std::endl;
     return 0;
 }

@@ -15,6 +15,8 @@
 		0582EB1E2017088E00E33114 /* Equipment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB1C2017088E00E33114 /* Equipment.cpp */; };
 		0582EB212017095E00E33114 /* AI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB1F2017095E00E33114 /* AI.cpp */; };
 		0582EB262018D6C100E33114 /* UnitRecruit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB242018D6C100E33114 /* UnitRecruit.cpp */; };
+		0582EB292019C6F700E33114 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB272019C6F700E33114 /* Utility.cpp */; };
+		0582EB2B201A22D900E33114 /* Status.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB2A201A22D900E33114 /* Status.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +50,9 @@
 		0582EB232018B2E200E33114 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		0582EB242018D6C100E33114 /* UnitRecruit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UnitRecruit.cpp; sourceTree = "<group>"; };
 		0582EB252018D6C100E33114 /* UnitRecruit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UnitRecruit.hpp; sourceTree = "<group>"; };
+		0582EB272019C6F700E33114 /* Utility.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utility.cpp; sourceTree = "<group>"; };
+		0582EB282019C6F700E33114 /* Utility.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utility.hpp; sourceTree = "<group>"; };
+		0582EB2A201A22D900E33114 /* Status.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Status.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +95,10 @@
 				0582EB112016F61200E33114 /* Unit.hpp */,
 				0582EB132016F70900E33114 /* UnitData.cpp */,
 				0582EB142016F70900E33114 /* UnitData.hpp */,
+				0582EB272019C6F700E33114 /* Utility.cpp */,
+				0582EB282019C6F700E33114 /* Utility.hpp */,
 				0582EB1A201700DA00E33114 /* Status.hpp */,
+				0582EB2A201A22D900E33114 /* Status.cpp */,
 				0582EB162016F81E00E33114 /* UnitManager.cpp */,
 				0582EB172016F81E00E33114 /* UnitManager.hpp */,
 				0582EB232018B2E200E33114 /* Constant.h */,
@@ -166,8 +174,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0582EB292019C6F700E33114 /* Utility.cpp in Sources */,
 				0582EB1E2017088E00E33114 /* Equipment.cpp in Sources */,
 				0582EB122016F61200E33114 /* Unit.cpp in Sources */,
+				0582EB2B201A22D900E33114 /* Status.cpp in Sources */,
 				0582EB182016F81E00E33114 /* UnitManager.cpp in Sources */,
 				051102EB2016F09C00499A58 /* main.cpp in Sources */,
 				051102F32016F16300499A58 /* GameManager.cpp in Sources */,

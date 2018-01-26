@@ -13,13 +13,24 @@
 ///////////UNIT GENERATOR/////////////
 //////////////////////////////////////
 
+UnitGenerator::UnitGenerator() {
+    std::cout << "UnitGenerator is initialized" << std::endl << std::endl;
+}
+
+UnitGenerator &UnitGenerator::GetInstance() {
+    static UnitGenerator instance;
+    
+    return instance;
+}
+
+
 std::string UnitGenerator::CombineName(const std::string &type_name, const std::string &ai_name, const std::string &weapon_name, const std::string &armor_name) {
-    std::string ret = ai_name + "'s " + type_name + "wearing [" + weapon_name +", " + armor_name +"]";
+    std::string ret = type_name +" " + ai_name + " wearing [" + weapon_name +", " + armor_name +"]";
     return ret;
 }
 
 //generate unit name from equipment, type_name, ai_type
-Unit* UnitGenerator::Generate(const UnitData &d_unit, const AI &ai, const Weapon *weapon, const Armor *armor) {
+Unit* UnitGenerator::Generate(const UnitData &d_unit, AI &ai, const Weapon *weapon, const Armor *armor) {
     UnitStatus stats = d_unit.stats;
     std::string weapon_name = "None";
     std::string armor_name = "None";
@@ -32,13 +43,17 @@ Unit* UnitGenerator::Generate(const UnitData &d_unit, const AI &ai, const Weapon
     std::string name = CombineName(d_unit.type_name, ai.ai_name(),
                                    weapon_name, armor_name);
     
-    Unit *generated_unit = GenerateUnit(name, stats);
+    Unit *generated_unit = GenerateUnit(name, stats, ai, weapon, armor);
     
     return generated_unit;
 }
 
-Unit* UnitGenerator::GenerateUnit(std::string name, UnitStatus stats) {
-    return new Unit(name, stats);
+Unit* UnitGenerator::Generate(const UnitData &d_unit, AI &ai) {
+    return Generate(d_unit, ai, NULL, NULL);
+}
+
+Unit* UnitGenerator::GenerateUnit(std::string name, UnitStatus stats, AI &ai, const Weapon *weapon, const Armor *armor) {
+    return new Unit(name, stats, ai, weapon, armor);
 }
 
 //////////////////////////////////////
@@ -93,6 +108,9 @@ namespace {
     
     void PrintUnitsInTeam(const std::vector<Unit*> &team){
         int num = 1;
+        if(team.size() == 0) {
+            std::cout << "Team have no member" << std::endl;
+        }
         for(const auto &unit : team) {
             std::cout << "[" << num << "th unit]" << std::endl;
             std::cout << unit << std::endl;
@@ -144,9 +162,11 @@ const std::vector<Unit*> &UnitManager::units_team_two() const {
 }
 
 void UnitManager::PrintUnitsInTeamOne() const {
+    std::cout<< "##Team1##" << std::endl;
     PrintUnitsInTeam(units_team_one_);
 }
 void UnitManager::PrintUnitsInTeamTwo() const {
+    std::cout<< "##Team2##" << std::endl;
     PrintUnitsInTeam(units_team_two_);
 }
 

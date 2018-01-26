@@ -29,9 +29,10 @@ public:
 private:
     std::string CombineName(const std::string &type_name, const std::string &ai_name, const std::string &weapon_name, const std::string &armor_name);
 public:
-    Unit* Generate(const UnitData &d_unit, const AI &ai, const Weapon *weapon, const Armor *armor);
+    Unit* Generate(const UnitData &d_unit, AI &ai, const Weapon *weapon, const Armor *armor);
+    Unit* Generate(const UnitData &d_unit, AI &ai);
 protected:
-    virtual Unit* GenerateUnit(std::string name, UnitStatus stats);
+    virtual Unit* GenerateUnit(std::string name, UnitStatus stats, AI &ai, const Weapon *weapon, const Armor *armor);
 };
 
 class UnitRemover {

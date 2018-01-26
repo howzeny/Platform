@@ -10,19 +10,26 @@
 #define UnitRecruit_hpp
 
 #include <stdio.h>
+#include <vector>
+#include "Unit.hpp"
 
 class IUnitRecruit {
     
 public:
-    virtual void RecruitOneTeam() = 0;
-    virtual void RecruitTwoTeam() = 0;
+    void AddUnitsToTeamOne();
+    void AddUnitsToTeamTwo();
+    
+private:
+    virtual std::vector<Unit*> MakeUnitsForTeamOne() = 0;
+    virtual std::vector<Unit*> MakeUnitsForTeamTwo() = 0;
+    
 };
 
-class UnitRecruitExample : IUnitRecruit {
+class UnitRecruitExample :public IUnitRecruit {
 
-public:
-    virtual void RecruitOneTeam() override;
-    virtual void RecruitTwoTeam() override;
+private:
+    virtual std::vector<Unit*> MakeUnitsForTeamOne() override;
+    virtual std::vector<Unit*> MakeUnitsForTeamTwo() override;
 };
 
 #endif /* UnitRecruit_hpp */
