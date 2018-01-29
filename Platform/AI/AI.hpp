@@ -22,6 +22,7 @@ public:
 class AI : AI_Interface {
     AI_Interface &wrapped;
 public:
+    AI();
     AI(AI_Interface &wrapper);
     
     virtual const std::string ai_name() const;

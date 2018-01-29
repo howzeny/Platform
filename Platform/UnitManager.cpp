@@ -30,17 +30,20 @@ std::string UnitGenerator::CombineName(const std::string &type_name, const std::
 }
 
 //generate unit name from equipment, type_name, ai_type
-Unit* UnitGenerator::Generate(const UnitData &d_unit, AI &ai, const Weapon *weapon, const Armor *armor) {
+Unit* UnitGenerator::Generate(const UnitData &d_unit, const AI *ai, const Weapon *weapon, const Armor *armor) {
     UnitStatus stats = d_unit.stats;
     std::string weapon_name = "None";
     std::string armor_name = "None";
+    std::string ai_name = "None AI";
     
     if(weapon != NULL)
         weapon_name = weapon->name();
     if(armor != NULL)
         armor_name = armor->name();
+    if(ai != NULL)
+        ai_name = ai->ai_name();
     
-    std::string name = CombineName(d_unit.type_name, ai.ai_name(),
+    std::string name = CombineName(d_unit.type_name, ai_name,
                                    weapon_name, armor_name);
     
     Unit *generated_unit = GenerateUnit(name, stats, ai, weapon, armor);
@@ -48,11 +51,11 @@ Unit* UnitGenerator::Generate(const UnitData &d_unit, AI &ai, const Weapon *weap
     return generated_unit;
 }
 
-Unit* UnitGenerator::Generate(const UnitData &d_unit, AI &ai) {
-    return Generate(d_unit, ai, NULL, NULL);
+Unit* UnitGenerator::Generate(const UnitData &d_unit) {
+    return Generate(d_unit, NULL, NULL, NULL);
 }
 
-Unit* UnitGenerator::GenerateUnit(std::string name, UnitStatus stats, AI &ai, const Weapon *weapon, const Armor *armor) {
+Unit* UnitGenerator::GenerateUnit(std::string name, UnitStatus stats, const AI *ai, const Weapon *weapon, const Armor *armor) {
     return new Unit(name, stats, ai, weapon, armor);
 }
 

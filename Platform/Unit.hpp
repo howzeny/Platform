@@ -18,14 +18,16 @@ class Unit {
 private:
     std::string name_;
     UnitStatus stats_;
-    AI &unit_ai_;
+    
+    const AI *unit_ai_;
     
     const Weapon *weapon_;
     const Armor *armor_;
     
 public:
-    Unit(std::string name, UnitStatus stats, AI &ai);
-    Unit(std::string name, UnitStatus stats,AI &ai, const Weapon *weapon, const Armor *armor);
+    virtual ~Unit();
+    Unit(std::string name, UnitStatus stats, const AI *ai);
+    Unit(std::string name, UnitStatus stats, const AI *ai, const Weapon *weapon, const Armor *armor);
     
     void SetAI(const AI *ai);
     void SetWeapon(const Weapon *weapon);

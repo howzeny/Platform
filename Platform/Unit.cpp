@@ -8,14 +8,26 @@
 
 #include "Unit.hpp"
 
-Unit::Unit(std::string name, UnitStatus stats, AI &ai) :Unit(name, stats, ai, NULL, NULL) {
+Unit::~Unit() {
+    if(weapon_ != NULL) {
+        delete weapon_;
+    }
+    if(armor_ != NULL) {
+        delete armor_;
+    }
+}
+
+Unit::Unit(std::string name, UnitStatus stats, const AI *ai) :Unit(name, stats, ai, NULL, NULL) {
 
 }
 
-Unit::Unit(std::string name, UnitStatus stats,AI &ai, const Weapon *weapon, const Armor *armor):name_(name), stats_(stats), unit_ai_(ai), weapon_(weapon), armor_(armor) {
+Unit::Unit(std::string name, UnitStatus stats, const AI *ai, const Weapon *weapon, const Armor *armor):name_(name), stats_(stats), unit_ai_(ai), weapon_(weapon), armor_(armor) {
     
 }
 
+void Unit::SetAI(const AI *ai) {
+    unit_ai_ = ai;
+}
 void Unit::SetWeapon(const Weapon *weapon) {
     weapon_ = weapon;
 }

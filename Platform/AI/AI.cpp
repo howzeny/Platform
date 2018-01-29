@@ -8,7 +8,6 @@
 
 #include "AI.hpp"
 
-
 AI::AI(AI_Interface &wrapper) :wrapped(wrapper) {
     
 }
