@@ -33,7 +33,16 @@ public:
     void SetWeapon(const Weapon *weapon);
     void SetArmor(const Armor *armor);
     
+    const UnitStatus &stats() const ;
+    
     friend std::ostream& operator<<(std::ostream& os, const Unit* unit);
+};
+
+class FastUnit {
+public:
+    inline bool operator() (const Unit* unit1, const Unit* unit2) {
+        return unit1->stats().spd > unit2->stats().spd;
+    }
 };
 
 #endif /* Unit_hpp */

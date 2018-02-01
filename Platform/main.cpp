@@ -7,21 +7,27 @@
 //
 
 #include <iostream>
+
 #include "GameManager.hpp"
 #include "Status.hpp"
 #include "Unit.hpp"
 #include "UnitManager.hpp"
 #include "UnitRecruit.hpp"
+#include "AI.hpp"
+#include "Console.hpp"
+#include "Utility.hpp"
+#include "BattleManager.hpp"
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     UnitRecruitExample ex;
     
-    ex.AddUnitsToTeamOne();
-    ex.AddUnitsToTeamTwo();
+    GameManager &gm = GameManager::GetInstance();
+    gm.Initialize(ex);
+    gm.ShowUnitsInEachTeam();
     
-    UnitManager::GetInstance().PrintUnitsInTeamOne();
-    UnitManager::GetInstance().PrintUnitsInTeamTwo();
-    //std::cout << a << std::endl;
+    BattleManager &bm = BattleManager::GetInstance();
+    bm.BattleStart();
+    
     return 0;
 }

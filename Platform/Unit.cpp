@@ -36,6 +36,11 @@ void Unit::SetArmor(const Armor *armor) {
     armor_ = armor;
 }
 
+const UnitStatus &Unit::stats() const {
+    return stats_;
+}
+    
+
 std::ostream& operator<<(std::ostream& os, const Unit* unit)
 {
     os << "Unit Name : " << unit->name_ << std::endl;

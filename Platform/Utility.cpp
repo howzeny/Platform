@@ -8,6 +8,7 @@
 
 #include "Utility.hpp"
 
+
 std::string Utility::lowercase_string(std::string str) {
     std::string ret = str;
     std::transform(ret.begin(), ret.end(), ret.begin(), ::tolower);

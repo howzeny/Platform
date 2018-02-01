@@ -8,6 +8,15 @@
 
 #include "AI.hpp"
 
+void AI_Interface::print(std::ostream &os) const {
+    os << "AI Name : " << this->ai_name();
+}
+
+std::ostream& operator<<(std::ostream &os, const AI_Interface &ai) {
+    ai.print(os);
+    return os;
+}
+
 AI::AI(AI_Interface &wrapper) :wrapped(wrapper) {
     
 }
@@ -19,3 +28,15 @@ const std::string AI::ai_name() const {
 void AI::action() {
     wrapped.action();
 }
+
+
+
+const std::string Player::ai_name() const {
+    return "Player";
+}
+
+void Player::action() {
+
+}
+
+

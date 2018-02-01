@@ -8,6 +8,7 @@
 
 #include "UnitManager.hpp"
 #include "Status.hpp"
+#include "Utility.hpp"
 
 //////////////////////////////////////
 ///////////UNIT GENERATOR/////////////
@@ -34,7 +35,7 @@ Unit* UnitGenerator::Generate(const UnitData &d_unit, const AI *ai, const Weapon
     UnitStatus stats = d_unit.stats;
     std::string weapon_name = "None";
     std::string armor_name = "None";
-    std::string ai_name = "None AI";
+    std::string ai_name = "None_AI";
     
     if(weapon != NULL)
         weapon_name = weapon->name();
@@ -52,6 +53,7 @@ Unit* UnitGenerator::Generate(const UnitData &d_unit, const AI *ai, const Weapon
 }
 
 Unit* UnitGenerator::Generate(const UnitData &d_unit) {
+    // will AI should be set as NoAI ?
     return Generate(d_unit, NULL, NULL, NULL);
 }
 
@@ -101,12 +103,9 @@ namespace {
     bool RemoveXthUnitFromTeam(int xth, std::vector<Unit*> &team) {
         if(xth > team.size() || xth < 0)
             return false; // out of index
-        std::vector<Unit*>::iterator iter = team.begin();
-        for(int i = 1; i < xth; i++)
-            iter++;
-        team.erase(iter);
-        return true;
         
+        team.erase(team.begin() + (xth - 1));
+        return true;
     }
     
     void PrintUnitsInTeam(const std::vector<Unit*> &team){
@@ -164,6 +163,36 @@ const std::vector<Unit*> &UnitManager::units_team_two() const {
     return units_team_two_;
 }
 
+const Constant::Team UnitManager::UnitInWhichTeam(const Unit *unit) const {
+    if(Utility::element_in_vector(unit, units_team_one_)) {
+        return Constant::TEAM_ONE;
+    } else if(Utility::element_in_vector(unit, units_team_two_)) {
+        return Constant::TEAM_TWO;
+    } else
+        return Constant::NO_TEAM;
+}
+
+bool UnitManager::IsTeamOneEmpty() const {
+    return units_team_one_.empty();
+}
+
+bool UnitManager::IsTeamTwoEmpty() const {
+    return units_team_two_.empty();
+}
+
+void UnitManager::ClearTeam() {
+    ClearTeamTwo();
+    ClearTeamOne();
+}
+
+void UnitManager::ClearTeamOne() {
+    units_team_one_.clear();
+}
+
+void UnitManager::ClearTeamTwo() {
+    units_team_two_.clear();
+}
+
 void UnitManager::PrintUnitsInTeamOne() const {
     std::cout<< "##Team1##" << std::endl;
     PrintUnitsInTeam(units_team_one_);
@@ -172,6 +201,7 @@ void UnitManager::PrintUnitsInTeamTwo() const {
     std::cout<< "##Team2##" << std::endl;
     PrintUnitsInTeam(units_team_two_);
 }
+
 
 
 

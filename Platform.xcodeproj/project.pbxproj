@@ -17,6 +17,10 @@
 		0582EB262018D6C100E33114 /* UnitRecruit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB242018D6C100E33114 /* UnitRecruit.cpp */; };
 		0582EB292019C6F700E33114 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB272019C6F700E33114 /* Utility.cpp */; };
 		0582EB2B201A22D900E33114 /* Status.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB2A201A22D900E33114 /* Status.cpp */; };
+		0582EB30201F2C9800E33114 /* EquipGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB2E201F2C9800E33114 /* EquipGenerator.cpp */; };
+		0582EB33201F533200E33114 /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB31201F533200E33114 /* Console.cpp */; };
+		0582EB362020BF8A00E33114 /* BattleAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB342020BF8A00E33114 /* BattleAction.cpp */; };
+		0582EB392021A99100E33114 /* BattleManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0582EB372021A99100E33114 /* BattleManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +57,14 @@
 		0582EB272019C6F700E33114 /* Utility.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utility.cpp; sourceTree = "<group>"; };
 		0582EB282019C6F700E33114 /* Utility.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utility.hpp; sourceTree = "<group>"; };
 		0582EB2A201A22D900E33114 /* Status.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Status.cpp; sourceTree = "<group>"; };
+		0582EB2E201F2C9800E33114 /* EquipGenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EquipGenerator.cpp; sourceTree = "<group>"; };
+		0582EB2F201F2C9800E33114 /* EquipGenerator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EquipGenerator.hpp; sourceTree = "<group>"; };
+		0582EB31201F533200E33114 /* Console.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Console.cpp; sourceTree = "<group>"; };
+		0582EB32201F533200E33114 /* Console.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Console.hpp; sourceTree = "<group>"; };
+		0582EB342020BF8A00E33114 /* BattleAction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BattleAction.cpp; sourceTree = "<group>"; };
+		0582EB352020BF8A00E33114 /* BattleAction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BattleAction.hpp; sourceTree = "<group>"; };
+		0582EB372021A99100E33114 /* BattleManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BattleManager.cpp; sourceTree = "<group>"; };
+		0582EB382021A99100E33114 /* BattleManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BattleManager.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +101,16 @@
 				051102EA2016F09C00499A58 /* main.cpp */,
 				051102F12016F16300499A58 /* GameManager.cpp */,
 				051102F22016F16300499A58 /* GameManager.hpp */,
+				0582EB372021A99100E33114 /* BattleManager.cpp */,
+				0582EB382021A99100E33114 /* BattleManager.hpp */,
+				0582EB342020BF8A00E33114 /* BattleAction.cpp */,
+				0582EB352020BF8A00E33114 /* BattleAction.hpp */,
+				0582EB31201F533200E33114 /* Console.cpp */,
+				0582EB32201F533200E33114 /* Console.hpp */,
 				0582EB242018D6C100E33114 /* UnitRecruit.cpp */,
 				0582EB252018D6C100E33114 /* UnitRecruit.hpp */,
+				0582EB2E201F2C9800E33114 /* EquipGenerator.cpp */,
+				0582EB2F201F2C9800E33114 /* EquipGenerator.hpp */,
 				0582EB102016F61200E33114 /* Unit.cpp */,
 				0582EB112016F61200E33114 /* Unit.hpp */,
 				0582EB132016F70900E33114 /* UnitData.cpp */,
@@ -177,13 +197,17 @@
 				0582EB292019C6F700E33114 /* Utility.cpp in Sources */,
 				0582EB1E2017088E00E33114 /* Equipment.cpp in Sources */,
 				0582EB122016F61200E33114 /* Unit.cpp in Sources */,
+				0582EB392021A99100E33114 /* BattleManager.cpp in Sources */,
+				0582EB33201F533200E33114 /* Console.cpp in Sources */,
 				0582EB2B201A22D900E33114 /* Status.cpp in Sources */,
 				0582EB182016F81E00E33114 /* UnitManager.cpp in Sources */,
+				0582EB30201F2C9800E33114 /* EquipGenerator.cpp in Sources */,
 				051102EB2016F09C00499A58 /* main.cpp in Sources */,
 				051102F32016F16300499A58 /* GameManager.cpp in Sources */,
 				0582EB212017095E00E33114 /* AI.cpp in Sources */,
 				0582EB262018D6C100E33114 /* UnitRecruit.cpp in Sources */,
 				0582EB152016F70900E33114 /* UnitData.cpp in Sources */,
+				0582EB362020BF8A00E33114 /* BattleAction.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

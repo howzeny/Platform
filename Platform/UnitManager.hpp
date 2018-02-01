@@ -77,6 +77,15 @@ public:
     const std::vector<Unit*> &units_team_one() const;
     const std::vector<Unit*> &units_team_two() const;
     
+    const Constant::Team UnitInWhichTeam(const Unit* unit) const;
+    
+    bool IsTeamOneEmpty() const;
+    bool IsTeamTwoEmpty() const;
+    
+    void ClearTeam();
+    void ClearTeamOne();
+    void ClearTeamTwo();
+    
     void PrintUnitsInTeamOne() const;
     void PrintUnitsInTeamTwo() const;
     

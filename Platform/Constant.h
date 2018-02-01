@@ -16,6 +16,14 @@ namespace Constant {
         
         NO_TEAM, // Dont know its necessity yet
     };
+    
+    enum InputCode {
+        NUM_ONE,
+        NUM_TWO,
+        NUM_THREE,
+        NUM_FOUR,
+        NUM_FIVE,
+    };
 }
 
 #endif /* Constant_h */
