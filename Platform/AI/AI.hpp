@@ -22,7 +22,7 @@ public:
     virtual const std::string ai_name() const = 0;
     //maybe I can set action using several protected virtual methods
     virtual Constant::InputCode DecideInput() const = 0;
-
+    
     friend std::ostream& operator<<(std::ostream &os, const AI_Interface &ai);
 };
 

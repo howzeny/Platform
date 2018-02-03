@@ -26,7 +26,7 @@ UnitGenerator &UnitGenerator::GetInstance() {
 
 
 std::string UnitGenerator::CombineName(const std::string &type_name, const std::string &ai_name, const std::string &weapon_name, const std::string &armor_name) {
-    std::string ret = type_name +" " + ai_name + " wearing [" + weapon_name +", " + armor_name +"]";
+    std::string ret = type_name +" AI<" + ai_name + "> wearing [" + weapon_name +", " + armor_name +"]";
     return ret;
 }
 
@@ -35,7 +35,7 @@ Unit* UnitGenerator::Generate(const UnitData &d_unit, const AI *ai, const Weapon
     UnitStatus stats = d_unit.stats;
     std::string weapon_name = "None";
     std::string armor_name = "None";
-    std::string ai_name = "None_AI";
+    std::string ai_name = "No AI";
     
     if(weapon != NULL)
         weapon_name = weapon->name();

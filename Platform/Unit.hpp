@@ -19,6 +19,9 @@ private:
     std::string name_;
     UnitStatus stats_;
     
+    //will be added
+    //UnitStatus bonus_stats_;
+    
     const AI *unit_ai_;
     
     const Weapon *weapon_;

@@ -95,6 +95,7 @@ void console::print_function_surround_by_banner(void (*other_function)(), const 
 
 Constant::InputCode console::GetInputCode() {
     std::cout << "Choose Action to execute: ";
-    
-    return Constant::NO_INPUT;
+    char input;
+    std::cin >> input;
+    return BattleManager::GetInstance().KeyToCode(input);
 }

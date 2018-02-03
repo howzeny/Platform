@@ -16,9 +16,9 @@ namespace action {
     NoAction kNoAction;
     
     const std::vector<KeyAction> kKeyActionList = {
-        KeyAction(CodeKey(Constant::NUM_ONE, '1'), kAttack),
-        KeyAction(CodeKey(Constant::NUM_TWO, '2'), kSpell),
-        KeyAction(CodeKey(Constant::NUM_THREE, '3'), kGuard),
+        KeyAction(CodeInput(Constant::NUM_ONE, '1'), kAttack),
+        KeyAction(CodeInput(Constant::NUM_TWO, '2'), kSpell),
+        KeyAction(CodeInput(Constant::NUM_THREE, '3'), kGuard),
     };
 }
 
@@ -40,8 +40,25 @@ AttackAction::AttackAction() {
     
 }
 
-void AttackAction::Execute() {
+void AttackAction::Execute(const Unit* unit) {
     
+}
+
+
+bool AttackAction::RequireSingleEnemyTarget() {
+    return true;
+}
+
+bool AttackAction::RequireAllEnemyTarget() {
+    return false;
+}
+
+bool AttackAction::RequireSingleAllyTarget() {
+    return false;
+}
+
+bool AttackAction::RequireAllAllyTarget() {
+    return false;
 }
 
 void AttackAction::print(std::ostream &os) const {
@@ -50,7 +67,7 @@ void AttackAction::print(std::ostream &os) const {
 
 ///Spell
 
-void SpellAction::Execute() {
+void SpellAction::Execute(const Unit* unit) {
     
 }
 void SpellAction::print(std::ostream &os) const {
@@ -60,7 +77,7 @@ void SpellAction::print(std::ostream &os) const {
 
 
 //Guard
-void GuardAction::Execute() {
+void GuardAction::Execute(const Unit* unit) {
     
 }
 void GuardAction::print(std::ostream &os) const {
@@ -69,7 +86,7 @@ void GuardAction::print(std::ostream &os) const {
 
 //No Action
 
-void NoAction::Execute() {
+void NoAction::Execute(const Unit* unit) {
     
 }
 
@@ -80,7 +97,7 @@ void NoAction::print(std::ostream &os) const {
 
 
 
-std::ostream& operator<<(std::ostream &os, const CodeKey &ic) {
+std::ostream& operator<<(std::ostream &os, const CodeInput &ic) {
     os << ic.second;
     return os;
 }

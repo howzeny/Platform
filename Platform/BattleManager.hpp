@@ -23,17 +23,17 @@ class BattleManager {
 public:
     void BattleStart();
     
-    bool AddBattleAction(const CodeKey &input_code, BattleAction &action);
+    bool AddBattleAction(const CodeInput &input_code, BattleAction &action);
     bool AddBattleAction(const KeyAction &key_action);
-    bool IsRegisterd(const CodeKey &code);
+    bool IsRegisterd(const CodeInput &code);
     
     void InitTurn();
     void InitAction();
     
     void ExecuteUnitTurn(const Unit* unit);
-    BattleAction &ActionCall(Constant::InputCode input);
+    BattleAction &ActionCall(Constant::InputCode code);
     
-    Constant::InputCode KeyToCode(const char key);
+    Constant::InputCode KeyToCode(const char input);
     
     void ClearOrderStack();
     

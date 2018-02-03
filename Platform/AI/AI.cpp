@@ -23,20 +23,20 @@ std::ostream& operator<<(std::ostream &os, const AI_Interface &ai) {
 
 //AI
 AI::AI(AI_Interface &wrapper) :wrapped(wrapper) {
-    std::cout << "seperate ?" << std::endl;
+    std::cout << "AI (" << wrapper.ai_name() << ") is initialized" << std::endl;
 }
 
 
 
 const std::string AI::ai_name() const {
-    return "AI(" + wrapped.ai_name() + ")";
+    return wrapped.ai_name();
 }
 
 Constant::InputCode AI::DecideInput() const {
     return wrapped.DecideInput();
 }
 
-std::string AI::Decision()() const {
+Constant::InputCode AI::Decision() const {
     return DecideInput();
 }
 

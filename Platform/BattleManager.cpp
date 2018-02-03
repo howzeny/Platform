@@ -20,10 +20,11 @@ namespace {
     }
     
     void print_key_action(const std::vector<KeyAction> &actions) {
+        console::print_with_banner("Possible Action", '/');
         for(const auto& key_action : actions) {
             auto code_key = key_action.first;
             auto action = key_action.second;
-            std::cout << "Action: " << action << "-Key["<< code_key.second << "]" << std::endl;
+            std::cout << action << "-Key["<< code_key.second << "]" << std::endl;
         }
     }
 
@@ -45,7 +46,7 @@ void BattleManager::BattleStart() {
     }
 }
 
-bool BattleManager::AddBattleAction(const CodeKey &input_code, BattleAction &action) {
+bool BattleManager::AddBattleAction(const CodeInput &input_code, BattleAction &action) {
     if(IsRegisterd(input_code)) {
         std::cout << "code is already registered" << std::endl;
         return false;
@@ -58,7 +59,7 @@ bool BattleManager::AddBattleAction(const KeyAction &key_action) {
     return AddBattleAction(key_action.first, key_action.second);
 }
 
-bool BattleManager::IsRegisterd(const CodeKey &code) {
+bool BattleManager::IsRegisterd(const CodeInput &code) {
     for(const auto &action : actions_) {
         auto &key_code = action.first;
         if(code.first == key_code.first ) {
@@ -97,26 +98,30 @@ void BattleManager::ExecuteUnitTurn(const Unit *unit) {
     
     print_key_action(actions_);
     const AI *unit_ai = unit->unit_ai();
-    std::cout << "Input: ";
     Constant::InputCode input = unit_ai->Decision();
+    
+    BattleAction &action = ActionCall(input);
+    std::cout << "Unit [" << unit->name() << "] choose <" << action << ">" << std::endl << std::endl;
+    
+    action.Execute();
 }
 
-BattleAction &BattleManager::ActionCall(Constant::InputCode input) {
+BattleAction &BattleManager::ActionCall(Constant::InputCode code) {
     for(const auto& key_action : actions_) {
-        const auto& key_code = key_action.first;
+        const auto& code_input = key_action.first;
         const auto& action = key_action.second;
-        if(key_code.first == input) {
+        if(code_input.first == code) {
             return action.get();
         }
     }
     return action::kNoAction;
 }
 
-Constant::InputCode BattleManager::KeyToCode(const char key) {
-    for(const auto& input_actions : actions_) {
-        const auto& code_key = input_actions.first;
-        if(code_key.second == key) {
-            return code_key.first;
+Constant::InputCode BattleManager::KeyToCode(const char input) {
+    for(const auto& key_actions : actions_) {
+        const auto& code_input = key_actions.first;
+        if(code_input.second == input) {
+            return code_input.first;
         }
     }
     return Constant::NO_INPUT;
@@ -143,7 +148,7 @@ bool BattleManager::SwitchToNextUnit() {
 
 //Singleton Implementation
 BattleManager::BattleManager() {
-    std::cout << "Battle Manager is initialized" << std::endl;
+    console::print_with_banner("Battle Manager is initialized" , '#');
 }
 
 BattleManager::~BattleManager() {

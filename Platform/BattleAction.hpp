@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "Constant.h"
+#include "Unit.hpp"
 
 class BattleAction {
 
@@ -20,7 +21,12 @@ public:
     BattleAction();
     virtual ~BattleAction(){}
     friend std::ostream& operator<<(std::ostream &os, const BattleAction &ba);
-    virtual void Execute() = 0;
+    virtual void Execute(const Unit* unit) = 0;
+    
+    virtual bool RequireSingleEnemyTarget() = 0;
+    virtual bool RequireAllEnemyTarget() = 0;
+    virtual bool RequireSingleAllyTarget() = 0;
+    virtual bool RequireAllAllyTarget() = 0;
   
 private:
     virtual void print(std::ostream &os) const = 0;
@@ -31,7 +37,13 @@ private:
 class AttackAction : public BattleAction {
 public:
     AttackAction();
-    virtual void Execute() override;
+    virtual void Execute(const Unit* unit) override;
+    
+    virtual bool RequireSingleEnemyTarget() override;
+    virtual bool RequireAllEnemyTarget() override;
+    virtual bool RequireSingleAllyTarget() override;
+    virtual bool RequireAllAllyTarget() override;
+    
 private:
     virtual void print(std::ostream &os) const override;
 };
@@ -39,7 +51,13 @@ private:
 class SpellAction : public BattleAction {
   
 public:
-    virtual void Execute() override;
+    virtual void Execute(const Unit* unit) override;
+    
+    virtual bool RequireSingleEnemyTarget() override;
+    virtual bool RequireAllEnemyTarget() override;
+    virtual bool RequireSingleAllyTarget() override;
+    virtual bool RequireAllAllyTarget() override;
+    
 private:
     virtual void print(std::ostream& os) const override;
 };
@@ -47,7 +65,12 @@ private:
 class GuardAction : public BattleAction {
   
 public:
-    virtual void Execute() override;
+    virtual void Execute(const Unit* unit) override;
+    
+    virtual bool RequireSingleEnemyTarget() override;
+    virtual bool RequireAllEnemyTarget() override;
+    virtual bool RequireSingleAllyTarget() override;
+    virtual bool RequireAllAllyTarget() override;
 private:
     virtual void print(std::ostream &os) const override;
 };
@@ -55,13 +78,18 @@ private:
 class NoAction : public BattleAction {
    
 public:
-    virtual void Execute() override;
+    virtual void Execute(const Unit* unit) override;
+    
+    virtual bool RequireSingleEnemyTarget() override;
+    virtual bool RequireAllEnemyTarget() override;
+    virtual bool RequireSingleAllyTarget() override;
+    virtual bool RequireAllAllyTarget() override;
 private:
     virtual void print(std::ostream &os) const override;
 };
 
-typedef std::pair<Constant::InputCode, char> CodeKey;
-typedef std::pair<CodeKey, std::reference_wrapper<BattleAction>> KeyAction;
+typedef std::pair<Constant::InputCode, char> CodeInput;
+typedef std::pair<CodeInput, std::reference_wrapper<BattleAction>> KeyAction;
 
 namespace action {
     extern AttackAction kAttack;
@@ -74,6 +102,6 @@ namespace action {
 };
 
 
-std::ostream& operator<<(std::ostream &os, const CodeKey &ic);
+std::ostream& operator<<(std::ostream &os, const CodeInput &ic);
 
 #endif /* BattleAction_hpp */
