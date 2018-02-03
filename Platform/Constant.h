@@ -23,7 +23,11 @@ namespace Constant {
         NUM_THREE,
         NUM_FOUR,
         NUM_FIVE,
+        
+        
+        NO_INPUT,
     };
+    
 }
 
 #endif /* Constant_h */

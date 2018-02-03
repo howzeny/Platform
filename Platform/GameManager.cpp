@@ -51,13 +51,15 @@ bool GameManager::Initialize(IUnitRecruit &recruiter) {
 void GameManager::ShowUnitsInEachTeam() const {
     const UnitManager &um = UnitManager::GetInstance();
     
-    console::print_with_banner("TEAM ONE MEMBER", '#');
+    console::print_with_banner("TEAM ONE MEMBER", '#', 50);
     um.PrintUnitsInTeamOne();
     
-    console::print_with_banner("TEAM TWO MEMBER", '#');
+    console::print_with_banner("TEAM TWO MEMBER", '#', 50);
     um.PrintUnitsInTeamTwo();
     
-    console::print_with_banner("END OF UNITS", '#');
+    console::print_with_banner("END OF UNITS", '#', 50);
+    std::cout << std::endl;
+    
 }
 
 
@@ -65,8 +67,7 @@ void GameManager::ShowUnitsInEachTeam() const {
 
 
 GameManager::GameManager() {
-    std::cout << "GameManager instance is generated , ";
-    std::cout << "should be called once" << std::endl;
+    console::print_with_banner("GameManager Initialized", '#', 20);
 }
 
 GameManager::~GameManager() {

@@ -10,8 +10,10 @@
 #define Console_hpp
 
 #include <string>
-
+#include "Constant.h"
+#include "BattleAction.hpp"
 namespace console {
+    
     void clear_screen();
     void print_members_in_battle_field();
     void print_ai_list();
@@ -19,6 +21,14 @@ namespace console {
     
     void show_action_list();
     
-    void print_with_banner(const std::string &text,const char banner, int banner_size = 70);
+    void print_with_banner(const std::string &text,const char banner, int banner_size = 0);
+    
+    void print_function_surround_by_banner(void (*other_function)(), const std::string &text, const char banner, int banner_size = 0);
+    
+    
+    
+    Constant::InputCode GetInputCode();
+    
 }
+
 #endif /* Console_hpp */

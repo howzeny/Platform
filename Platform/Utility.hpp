@@ -12,7 +12,8 @@
 #include <algorithm>
 #include <string>
 #include <vector>
-
+#include <iostream>
+#include <assert.h>
 
 namespace Utility {
     std::string lowercase_string(std::string str);
@@ -37,6 +38,12 @@ namespace Utility {
         target.reserve(vec_one.size() + vec_two.size());
         target.insert(target.end(), vec_one.begin(), vec_one.end());
         target.insert(target.end(), vec_two.begin(), vec_two.end());
+    }
+    
+    template<typename T>
+    void pop_front(std::vector<T>& vec) {
+        assert(!vec.empty());
+        vec.erase(vec.begin());
     }
 };
 

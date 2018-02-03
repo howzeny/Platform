@@ -35,13 +35,14 @@ std::vector<Unit*> UnitRecruitExample::MakeUnitsForTeamOne() {
     UnitData magician_data = UnitDB::get_unit_data_by_name("magician");
     
     //Make AI for unit
-    NoAI no_ai; //Wrapper for ai
-    AI *ai = new AI(no_ai);
+    AI *ai = new AI(ai::kNoAI);
+    Player player;
+    AI *ai2 = new AI(ai::kPlayer);
     
     //Warrior with NO AI, NO WEAPON, NO ARMOR
     Unit *unit = UnitGenerator::GetInstance().Generate(warrior_data, ai, NULL, NULL);
     //Magician with NO AI, NO WEAPON, NO ARMOR
-    Unit *unit2 = UnitGenerator::GetInstance().Generate(magician_data);
+    Unit *unit2 = UnitGenerator::GetInstance().Generate(magician_data, ai2, NULL, NULL);
     
     std::vector<Unit*> ret;
     ret.push_back(unit);
@@ -54,8 +55,8 @@ std::vector<Unit*> UnitRecruitExample::MakeUnitsForTeamTwo() {
     UnitData skeleton_data = UnitDB::get_unit_data_by_name("skeleton");
     UnitData skeleton_mage_data = UnitDB::get_unit_data_by_Type(UNIT_SKELETON_MAGE);
     
-    NoAI no_ai;
-    AI *ai = new AI(no_ai);
+    AI *ai = new AI(ai::kNoAI);
+    
     
     Unit *unit = UnitGenerator::GetInstance().Generate(skeleton_data, ai, NULL, NULL);
     Unit *unit2 = UnitGenerator::GetInstance().Generate(skeleton_mage_data);

@@ -13,13 +13,16 @@
 #include <string>
 #include <vector>
 
+#include "Constant.h"
+
 class AI_Interface {
     
     virtual void print(std::ostream& os) const;
 public:
     virtual const std::string ai_name() const = 0;
     //maybe I can set action using several protected virtual methods
-    virtual void action() = 0;
+    virtual Constant::InputCode DecideInput() const = 0;
+
     friend std::ostream& operator<<(std::ostream &os, const AI_Interface &ai);
 };
 
@@ -30,35 +33,36 @@ public:
     AI(AI_Interface &wrapper);
     
     virtual const std::string ai_name() const;
-    virtual void action();
+    virtual Constant::InputCode DecideInput() const;
+    
+    Constant::InputCode Decision() const;
 };
 
 class Player : public AI_Interface {
     
 public:
+    virtual ~Player() {std::cout << "player is released" << std::endl;}
     virtual const std::string ai_name() const;
-    virtual void action();
+    virtual Constant::InputCode DecideInput() const;
 };
 
 
 class NoAI : public AI_Interface {
 public:
     NoAI(){}
-    virtual const std::string ai_name() const {return "No AI";}
-    virtual void action() {}
+    virtual ~NoAI() {std::cout << "NoAI is released" << std::endl;}
+    virtual const std::string ai_name() const;
+    virtual Constant::InputCode DecideInput() const;
 };
 
 namespace ai {
-    const NoAI kNoAI;
-    const Player kPlayer;
+    extern NoAI kNoAI;
+    extern Player kPlayer;
     
     //Quite difficult to implement this code.
     //vector can't have raw reference. because It should be assignable.
     //If it is not pointer, reference_wrapper is needed.
-    const std::vector<std::reference_wrapper<const AI_Interface>> kAIList = {
-        kNoAI,
-        kPlayer,
-     };
+    extern const std::vector<std::reference_wrapper<AI_Interface>> kAIList;
      
 };
 

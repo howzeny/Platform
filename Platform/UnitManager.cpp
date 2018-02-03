@@ -115,8 +115,11 @@ namespace {
         }
         for(const auto &unit : team) {
             std::cout << "[" << num << "th unit]" << std::endl;
-            std::cout << unit << std::endl;
-            num++;
+            std::cout << unit;
+            if(num != team.size()){
+                std::cout << std::endl;
+                num++;
+            }
         }
     }
     
@@ -194,11 +197,9 @@ void UnitManager::ClearTeamTwo() {
 }
 
 void UnitManager::PrintUnitsInTeamOne() const {
-    std::cout<< "##Team1##" << std::endl;
     PrintUnitsInTeam(units_team_one_);
 }
 void UnitManager::PrintUnitsInTeamTwo() const {
-    std::cout<< "##Team2##" << std::endl;
     PrintUnitsInTeam(units_team_two_);
 }
 

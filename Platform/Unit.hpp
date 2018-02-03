@@ -34,6 +34,8 @@ public:
     void SetArmor(const Armor *armor);
     
     const UnitStatus &stats() const ;
+    const AI *unit_ai() const;
+    const std::string &name() const;
     
     friend std::ostream& operator<<(std::ostream& os, const Unit* unit);
 };

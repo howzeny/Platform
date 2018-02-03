@@ -18,30 +18,54 @@ namespace {
     void sort_unit_by_spd(std::vector<Unit*> &team) {
         std::sort(team.begin(), team.end(), FastUnit());
     }
+    
+    void print_key_action(const std::vector<KeyAction> &actions) {
+        for(const auto& key_action : actions) {
+            auto code_key = key_action.first;
+            auto action = key_action.second;
+            std::cout << "Action: " << action << "-Key["<< code_key.second << "]" << std::endl;
+        }
+    }
+
 }
 
 
 
 void BattleManager::BattleStart() {
     InitTurn();
+    console::print_function_surround_by_banner(&console::print_units_by_fast_order, "Units In Order", '#', 70);
     
-    console::print_with_banner("Units In Order", '#');
-    console::print_units_by_fast_order();
-    console::print_with_banner("End of Units In Order", '#');
+    InitAction();
+    
+    while(!units_in_order_.empty()) {
+        const Unit* next_unit = get_next_order_unit();
+        ExecuteUnitTurn(next_unit);
+        SwitchToNextUnit();
+        
+    }
 }
 
-bool BattleManager::AddBattleAction(BattleAction &action) {
-    if(IsRegisterd(action.execution_code())) {
+bool BattleManager::AddBattleAction(const CodeKey &input_code, BattleAction &action) {
+    if(IsRegisterd(input_code)) {
         std::cout << "code is already registered" << std::endl;
         return false;
     }
-    actions_.push_back(action);
+    actions_.push_back(KeyAction(input_code, action));
     return true;
 }
 
-bool BattleManager::IsRegisterd(Constant::InputCode code) {
+bool BattleManager::AddBattleAction(const KeyAction &key_action) {
+    return AddBattleAction(key_action.first, key_action.second);
+}
+
+bool BattleManager::IsRegisterd(const CodeKey &code) {
     for(const auto &action : actions_) {
-        if(code == action.get().execution_code()) {
+        auto &key_code = action.first;
+        if(code.first == key_code.first ) {
+            std::cout << "Already registered action Code";
+            return true;
+        } else if (code.second == key_code.second) {
+            std::cout << "Already registered action Key";
             return true;
         }
     }
@@ -49,35 +73,77 @@ bool BattleManager::IsRegisterd(Constant::InputCode code) {
 }
 
 void BattleManager::InitTurn() {
+    ClearOrderStack();
+    
     UnitManager &um = UnitManager::GetInstance();
     const std::vector<Unit*> &team_one = um.units_team_one();
     const std::vector<Unit*> &team_two = um.units_team_two();
     
-    /*
-    //preallocate mem
-    units_in_order_.reserve( team_one.size() + team_two.size());
-    //add team one
-    units_in_order_.insert(units_in_order_.end(), team_one.begin(), team_one.end());
-    //add team two
-    units_in_order_.insert(units_in_order_.end(), team_two.begin(), team_two.end());
-    */
     Utility::emerge_vector(units_in_order_, team_one, team_two);
     
     sort_unit_by_spd(units_in_order_);
+}
+
+void BattleManager::InitAction() {
+    for(const auto &key_action : action::kKeyActionList) {
+        AddBattleAction(key_action);
+    }
+}
+
+
+void BattleManager::ExecuteUnitTurn(const Unit *unit) {
+    console::print_with_banner("Unit Action", '#');
+    std::cout << unit << std::endl;
+    
+    print_key_action(actions_);
+    const AI *unit_ai = unit->unit_ai();
+    std::cout << "Input: ";
+    Constant::InputCode input = unit_ai->Decision();
+}
+
+BattleAction &BattleManager::ActionCall(Constant::InputCode input) {
+    for(const auto& key_action : actions_) {
+        const auto& key_code = key_action.first;
+        const auto& action = key_action.second;
+        if(key_code.first == input) {
+            return action.get();
+        }
+    }
+    return action::kNoAction;
+}
+
+Constant::InputCode BattleManager::KeyToCode(const char key) {
+    for(const auto& input_actions : actions_) {
+        const auto& code_key = input_actions.first;
+        if(code_key.second == key) {
+            return code_key.first;
+        }
+    }
+    return Constant::NO_INPUT;
+}
+
+void BattleManager::ClearOrderStack() {
+    units_in_order_.clear();
 }
 
 const std::vector<Unit*> BattleManager::units_in_order() const {
     return units_in_order_;
 }
 
-const Unit* BattleManager::NextUnit() const{
+const Unit* BattleManager::get_next_order_unit() const {
     return units_in_order_.front();
+}
+
+bool BattleManager::SwitchToNextUnit() {
+    if(units_in_order_.empty())
+        return false;
+    Utility::pop_front(units_in_order_);
+    return true;
 }
 
 //Singleton Implementation
 BattleManager::BattleManager() {
     std::cout << "Battle Manager is initialized" << std::endl;
-    
 }
 
 BattleManager::~BattleManager() {

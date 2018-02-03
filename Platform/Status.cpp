@@ -21,7 +21,7 @@ namespace {
 std::ostream& operator<<(std::ostream &os, const UnitStatus &us) {
     
     os << "[HP" << bracket_points(us.hp, us.mhp) <<"  MP" << bracket_points(us.mp, us.mmp) <<"]" << std::endl;
-    os << "[ATK" << bracket_attr(us.atk) <<"  DEF" << bracket_attr(us.def) <<  " INT" << bracket_attr(us.intelligence) << "  RES" << bracket_attr(us.resist) <<"  SPD" << bracket_attr(us.spd) <<"]" << std::endl;
+    os << "[ATK" << bracket_attr(us.atk) <<"  DEF" << bracket_attr(us.def) <<  " INT" << bracket_attr(us.intelligence) << "  RES" << bracket_attr(us.resist) <<"  SPD" << bracket_attr(us.spd) <<"]";
     
     return os;
 }

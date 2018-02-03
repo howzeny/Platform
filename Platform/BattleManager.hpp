@@ -11,28 +11,36 @@
 
 
 #include <vector>
+
 #include "BattleAction.hpp"
 #include "Unit.hpp"
 
 class BattleManager {
-    std::vector<std::reference_wrapper<BattleAction>> actions_;
+    //std::pair<std::pari<Constant::InputCode char>, std::reference_wrapper<BattleAction>> KeyAction;
+    std::vector<KeyAction> actions_;
     std::vector<Unit*> units_in_order_;
     
 public:
     void BattleStart();
     
-    bool AddBattleAction(BattleAction &action);
-    bool IsRegisterd(Constant::InputCode code);
+    bool AddBattleAction(const CodeKey &input_code, BattleAction &action);
+    bool AddBattleAction(const KeyAction &key_action);
+    bool IsRegisterd(const CodeKey &code);
     
     void InitTurn();
+    void InitAction();
     
-    void ExecuteUnitTurn(Unit* unit);
+    void ExecuteUnitTurn(const Unit* unit);
+    BattleAction &ActionCall(Constant::InputCode input);
+    
+    Constant::InputCode KeyToCode(const char key);
+    
+    void ClearOrderStack();
     
     const std::vector<Unit*> units_in_order() const;
-    const Unit* NextUnit() const;
+    const Unit* get_next_order_unit() const;
+    bool SwitchToNextUnit();
     
-    
-private:
 //Singleton
 private:
     BattleManager();
