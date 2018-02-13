@@ -22,9 +22,9 @@ namespace {
     void print_key_action(const std::vector<KeyAction> &actions) {
         console::print_with_banner("Possible Action", '/');
         for(const auto& key_action : actions) {
-            auto code_key = key_action.first;
+            auto key = key_action.first;
             auto action = key_action.second;
-            std::cout << action << "-Key["<< code_key.second << "]" << std::endl;
+            std::cout << action << "-Key["<< Utility::CodeToKey(key) << "]" << std::endl;
         }
     }
 
@@ -46,7 +46,7 @@ void BattleManager::BattleStart() {
     }
 }
 
-bool BattleManager::AddBattleAction(const CodeInput &input_code, BattleAction &action) {
+bool BattleManager::AddBattleAction(Constant::InputCode input_code, BattleAction &action) {
     if(IsRegisterd(input_code)) {
         std::cout << "code is already registered" << std::endl;
         return false;
@@ -59,14 +59,10 @@ bool BattleManager::AddBattleAction(const KeyAction &key_action) {
     return AddBattleAction(key_action.first, key_action.second);
 }
 
-bool BattleManager::IsRegisterd(const CodeInput &code) {
-    for(const auto &action : actions_) {
-        auto &key_code = action.first;
-        if(code.first == key_code.first ) {
+bool BattleManager::IsRegisterd(Constant::InputCode code) {
+    for(const auto &key_action : actions_) {
+        if(code == key_action.first ) {
             std::cout << "Already registered action Code";
-            return true;
-        } else if (code.second == key_code.second) {
-            std::cout << "Already registered action Key";
             return true;
         }
     }
@@ -98,19 +94,28 @@ void BattleManager::ExecuteUnitTurn(const Unit *unit) {
     
     print_key_action(actions_);
     const AI *unit_ai = unit->unit_ai();
-    Constant::InputCode input = unit_ai->Decision();
     
+    Constant::InputCode input = unit_ai->DecideInput();
     BattleAction &action = ActionCall(input);
-    std::cout << "Unit [" << unit->name() << "] choose <" << action << ">" << std::endl << std::endl;
+    //BattleAction& action = action::kNoAction;
     
-    action.Execute();
+    /*
+    while(&action == &action::kNoAction) {
+        Constant::InputCode input = unit_ai->DecideInput();
+        action = ActionCall(input);
+        std::cout << "Unit [" << unit->name() << "] choose <" << action << ">" << std::endl << std::endl;
+
+    }*/
+     std::cout << "Unit [" << unit->name() << "] choose <" << action << ">" << std::endl << std::endl;
+    
+    action.Execute(unit);
 }
 
 BattleAction &BattleManager::ActionCall(Constant::InputCode code) {
     for(const auto& key_action : actions_) {
-        const auto& code_input = key_action.first;
+        const auto& key = key_action.first;
         const auto& action = key_action.second;
-        if(code_input.first == code) {
+        if(key == code) {
             return action.get();
         }
     }
@@ -119,9 +124,9 @@ BattleAction &BattleManager::ActionCall(Constant::InputCode code) {
 
 Constant::InputCode BattleManager::KeyToCode(const char input) {
     for(const auto& key_actions : actions_) {
-        const auto& code_input = key_actions.first;
-        if(code_input.second == input) {
-            return code_input.first;
+        const auto& key = key_actions.first;
+        if(Utility::CodeToKey(key) == input) {
+            return key;
         }
     }
     return Constant::NO_INPUT;

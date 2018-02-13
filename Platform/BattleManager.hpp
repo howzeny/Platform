@@ -23,9 +23,9 @@ class BattleManager {
 public:
     void BattleStart();
     
-    bool AddBattleAction(const CodeInput &input_code, BattleAction &action);
-    bool AddBattleAction(const KeyAction &key_action);
-    bool IsRegisterd(const CodeInput &code);
+    bool AddBattleAction(Constant::InputCode input_code, BattleAction& action);
+    bool AddBattleAction(const KeyAction& key_action);
+    bool IsRegisterd(Constant::InputCode code);
     
     void InitTurn();
     void InitAction();

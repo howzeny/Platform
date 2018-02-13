@@ -22,6 +22,7 @@ public:
     virtual const std::string ai_name() const = 0;
     //maybe I can set action using several protected virtual methods
     virtual Constant::InputCode DecideInput() const = 0;
+    virtual int ChooseTarget() const = 0;
     
     friend std::ostream& operator<<(std::ostream &os, const AI_Interface &ai);
 };
@@ -34,8 +35,8 @@ public:
     
     virtual const std::string ai_name() const;
     virtual Constant::InputCode DecideInput() const;
+    virtual int ChooseTarget() const;
     
-    Constant::InputCode Decision() const;
 };
 
 class Player : public AI_Interface {
@@ -44,6 +45,7 @@ public:
     virtual ~Player() {std::cout << "player is released" << std::endl;}
     virtual const std::string ai_name() const;
     virtual Constant::InputCode DecideInput() const;
+    virtual int ChooseTarget() const;
 };
 
 
@@ -53,6 +55,7 @@ public:
     virtual ~NoAI() {std::cout << "NoAI is released" << std::endl;}
     virtual const std::string ai_name() const;
     virtual Constant::InputCode DecideInput() const;
+    virtual int ChooseTarget() const;
 };
 
 namespace ai {

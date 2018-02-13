@@ -21,7 +21,7 @@ std::ostream& operator<<(std::ostream &os, const AI_Interface &ai) {
 
 
 
-//AI
+//############AI#############
 AI::AI(AI_Interface &wrapper) :wrapped(wrapper) {
     std::cout << "AI (" << wrapper.ai_name() << ") is initialized" << std::endl;
 }
@@ -36,9 +36,11 @@ Constant::InputCode AI::DecideInput() const {
     return wrapped.DecideInput();
 }
 
-Constant::InputCode AI::Decision() const {
-    return DecideInput();
+int AI::ChooseTarget() const {
+    return wrapped.ChooseTarget();
 }
+
+
 
 //Player
 const std::string Player::ai_name() const {
@@ -49,13 +51,22 @@ Constant::InputCode Player::DecideInput() const {
     return console::GetInputCode();
 }
 
+int Player::ChooseTarget() const {
+    return 0;
+}
+
+
 //NoAI
 const std::string NoAI::ai_name() const {
     return "No AI";
 }
 
 Constant::InputCode NoAI::DecideInput() const {
-    return Constant::NO_INPUT;
+    return Constant::NUM_TWO;
+}
+
+int NoAI::ChooseTarget() const {
+    return 0;
 }
 
 namespace ai {

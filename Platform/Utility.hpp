@@ -15,6 +15,8 @@
 #include <iostream>
 #include <assert.h>
 
+#include "Constant.h"
+
 namespace Utility {
     std::string lowercase_string(std::string str);
     
@@ -45,6 +47,9 @@ namespace Utility {
         assert(!vec.empty());
         vec.erase(vec.begin());
     }
+    
+    const char CodeToKey(Constant::InputCode code);
+    
 };
 
 #endif /* Utility_hpp */

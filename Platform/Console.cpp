@@ -97,5 +97,6 @@ Constant::InputCode console::GetInputCode() {
     std::cout << "Choose Action to execute: ";
     char input;
     std::cin >> input;
+    
     return BattleManager::GetInstance().KeyToCode(input);
 }

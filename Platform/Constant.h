@@ -28,6 +28,7 @@ namespace Constant {
         NO_INPUT,
     };
     
+    
 }
 
 #endif /* Constant_h */
