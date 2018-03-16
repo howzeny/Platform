@@ -9,8 +9,26 @@
 #include "BattleAction.hpp"
 
 
+namespace action {
+    Action kAttack(NONE, "attack", Constant::ATK, 1, 0);
+    Action kMagicBolt(NONE, "magic bolt", Constant::INT, 1.8, 3);
+    Action kFireBall(MULTI_TARGET, "fire ball", Constant::INT, 1.3, 6);
+    Action kHeal(ALLY_TARGET|NEGATIVE_VALUE, "heal", Constant::INT, 2.0, 4);
+    Action kGuard(BUFF, "guard", Constant::DEF, 2.0, 0);
+};
+
+Action::Action(ActionType a_type, std::string a_name, Constant::Attribute attr, float multiplier, float cost) {
+    
+}
+
+std::ostream& operator<<(std::ostream &os, const Action &a) {
+    os << a.action_name_ << ", Attribute : " << a.attr_type_ << " Mult(" << a.multiplier_ << ") [" <<  a.cost_ << "]" << std::endl;
+    return os;
+}
 
 
+
+/*
 namespace action {
     AttackAction kAttack;
     SpellAction kSpell;
@@ -84,4 +102,4 @@ void NoAction::print(std::ostream &os) const {
     os << "NO ACTION";
 }
 
-
+*/

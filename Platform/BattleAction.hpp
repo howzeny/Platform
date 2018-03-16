@@ -18,10 +18,13 @@
 enum ActionType {
     NONE          = 0,
     
-    MULTI_TARGET = (1 << 1),
-    ALLY_TARGET   = (1 << 2),
-    NEGATIVE_VALUE        = (1 << 3),
-    BUFF         = (1 << 4),
+    SELF_TARGET          = (1 << 0),
+    MULTI_TARGET         = (1 << 1),
+    ALLY_TARGET          = (1 << 2),
+    NEGATIVE_VALUE       = (1 << 3),
+    BUFF                 = (1 << 4),
+    HP_COST              = (1 << 5),
+    
 };
 
 inline ActionType operator|(ActionType a, ActionType b) {
@@ -32,12 +35,35 @@ class Action {
     std::string action_name_;
     ActionType action_type_;
     
+    
+    float multiplier_;
+    float cost_;
+    Constant::Attribute attr_type_;
+    
 public:
-    Action(ActionType a_type, std::string a_name);
+    Action(ActionType a_type, std::string a_name,Constant::Attribute attr, float multiplier, float cost);
     friend std::ostream& operator<<(std::ostream &os, const Action &a);
     void Execute(const Unit* unit);
 };
 
+
+typedef std::pair<Constant::InputCode, Action> KeyAction;
+
+namespace action {
+    extern Action kAttack;
+    extern Action kMagicBolt;
+    extern Action kFireBall;
+    extern Action kHeal;
+    extern Action kGuard;
+    
+    extern Action kNoAction;
+    
+    extern const std::vector<KeyAction> kKeyActionList;
+};
+
+
+
+/*
 
 class BattleAction {
     
@@ -111,6 +137,6 @@ namespace action {
     extern const std::vector<KeyAction> kKeyActionList;
 };
 
-
+*/
 
 #endif /* BattleAction_hpp */

@@ -28,7 +28,15 @@ namespace Constant {
         NO_INPUT,
     };
     
-    
+    enum Attribute {
+        HP,
+        MP,
+        ATK,
+        DEF,
+        INT,
+        RES,
+        SPD
+    };
 }
 
 #endif /* Constant_h */
